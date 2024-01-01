@@ -2,15 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./style.css" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <title>Excel Clone</title>
+    <title>Excel</title>
   </head>
+
   <body>
+    <!-- Page Actions Container -->
     <div class="page-actions-container">
       <div class="page-action">Home</div>
       <div class="page-action">File</div>
@@ -18,10 +21,12 @@
       <div class="page-action">Layout</div>
       <div class="page-action">Help</div>
     </div>
-    <div class="cellprops-actions-container">
-      <span class="material-symbols-outlined"> content_copy </span>
-      <span class="material-symbols-outlined"> content_cut </span>
-      <span class="material-symbols-outlined"> content_paste </span>
+
+    <!-- Cell Properties Actions Container -->
+    <div class="cellprop-actions-container">
+      <span class="material-icons copy"> content_copy </span>
+      <span class="material-icons cut"> content_cut </span>
+      <span class="material-icons paste"> content_paste </span>
       <select class="font-family-prop">
         <option value="monospace">Monospace</option>
         <option value="sans-serif">Sans-Serif</option>
@@ -29,37 +34,46 @@
         <option value="cursive">Cursive</option>
       </select>
       <select class="font-size-prop">
-        <option value="12">12</option>
         <option value="14">14</option>
         <option value="16">16</option>
         <option value="18">18</option>
         <option value="20">20</option>
       </select>
-      <span class="material-symbols-outlined"> format_bold </span>
-      <span class="material-symbols-outlined"> format_italic </span>
-      <span class="material-symbols-outlined"> format_underlined </span>
-      <span class="material-symbols-outlined"> format_align_left </span>
-      <span class="material-symbols-outlined"> format_align_center </span>
-      <span class="material-symbols-outlined"> format_align_right </span>
+      <span class="material-icons bold"> format_bold </span>
+      <span class="material-icons italic"> format_italic </span>
+      <span class="material-icons underline"> format_underlined </span>
+      <span class="left material-icons alignment"> format_align_left </span>
+      <span class="center material-icons alignment"> format_align_center </span>
+      <span class="right material-icons alignment"> format_align_right </span>
     </div>
+
+    <!-- Formula Actions Container -->
     <div class="formula-actions-container">
-      <input type="text" class="address-bar" readonly />
+      <input type="text" readonly class="address-bar" />
       <img
-        src="https://uxwing.com/wp-content/themes/uxwing/download/education-school/formula-fx-icon.png"
-        alt="formula"
         class="formula-icon"
+        src="https://img.icons8.com/ios/50/000000/formula-fx.png"
       />
       <input type="text" class="formula-bar" />
     </div>
-    <div class="grid-container"></div>
-    <div class="sheet-actions-container">
-      <div class="sheet-add-icon">
-        <span class="material-symbols-outlined"> post_add </span>
-      </div>
-      <div class="sheet-folder-container">
-        <div class="sheet-folder">Sheet 1</div>
+
+    <!-- Cell Grid Container -->
+    <div class="grid-container">
+      <div class="top-left-dummy-box"></div>
+      <div class="address-col-container"></div>
+      <div class="cells-container">
+        <div class="address-row-container"></div>
       </div>
     </div>
-    <script src="./script.js"></script>
+
+    <!-- Sheet Actions Container -->
+    <div class="sheet-actions-container">
+      <div class="sheet-add-icon">
+        <span class="material-icons"> post_add </span>
+      </div>
+      <div class="sheets-folder-container"></div>
+    </div>
+
+    <script src="./grid.js"></script>
   </body>
 </html>
