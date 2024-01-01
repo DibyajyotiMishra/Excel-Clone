@@ -1,4 +1,4 @@
-let rows = 100;
+let rows = 1000;
 let cols = 26;
 
 let addressColContainer = document.querySelector(".address-col-container");
