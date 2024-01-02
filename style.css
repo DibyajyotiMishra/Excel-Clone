@@ -199,4 +199,18 @@ body {
 
 .cell-selected {
   background-color: #ffffff;
+  border: 2px solid #2172d5;
+}
+
+.color-prop {
+  position: relative;
+}
+
+.color-prop > input {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
