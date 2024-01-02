@@ -219,11 +219,17 @@ function decodeRowIdAndColIdFromAddress(address) {
   return [rowId, colId];
 }
 
+// Attach listeners to all cells
 let allCells = document.querySelectorAll(".cell");
 for (let index = 0; index < allCells.length; index++) {
   addListenerToAttachCellProperties(allCells[index]);
 }
 
+/**
+ * Adds a listener to attach cell styling properties to the given cell when it is clicked.
+ *
+ * @param {HTMLElement} cell - The cell element to attach properties to.
+ */
 function addListenerToAttachCellProperties(cell) {
   cell.addEventListener("click", e => {
     // get cell address
