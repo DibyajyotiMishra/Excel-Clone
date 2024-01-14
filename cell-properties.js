@@ -1,30 +1,18 @@
+// Contains Properties of all the sheets in the application.
+let allSheetsDB = [];
+
+// Currently selected sheet
 let sheetsDB = [];
+
+{
+  let addSheetButton = document.querySelector(".sheet-add-icon");
+  addSheetButton.click();
+}
 
 /**
  * Since cell-properties.js file is below grid.js in index.html,
  * it can access all the variables used in it.
  */
-for (let rowIdx = 0; rowIdx < rows; rowIdx++) {
-  let sheetRow = [];
-  for (let colIdx = 0; colIdx < cols; colIdx++) {
-    // default props
-    let cellProps = {
-      bold: false,
-      italic: false,
-      underline: false,
-      alignment: "left",
-      fontFamily: "monospace",
-      fontSize: "14",
-      fontColor: "#000000",
-      backgroundColor: "#ffffff",
-      value: "",
-      formula: "",
-      children: [],
-    };
-    sheetRow.push(cellProps);
-  }
-  sheetsDB.push(sheetRow);
-}
 
 // Selectors for cell properties
 let bold = document.querySelector(".bold");
@@ -296,6 +284,6 @@ function addListenerToAttachCellProperties(cell) {
 
     let formulaBar = document.querySelector(".formula-bar");
     formulaBar.value = cellProp.formula;
-    cell.value = cellProp.value;
+    cell.innerText = cellProp.value;
   });
 }
