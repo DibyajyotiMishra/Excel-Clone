@@ -1,6 +1,10 @@
 let activeSheetTabColor = "#CED6E0";
 let sheetsFolderContainer = document.querySelector(".sheets-folder-container");
 let addSheetButton = document.querySelector(".sheet-add-icon");
+
+/**
+ * Adds a new sheet to the UI.
+ **/
 addSheetButton.addEventListener("click", e => {
   let sheet = document.createElement("div");
   sheet.setAttribute("class", "sheet-folder");
@@ -17,6 +21,13 @@ addSheetButton.addEventListener("click", e => {
   sheet.click();
 });
 
+/**
+ * Generates a new sheet database and adds it to the allSheetsDB array.
+ *
+ * @param {number} rows - The number of rows in the sheet.
+ * @param {number} cols - The number of columns in the sheet.
+ * @return {void} This function does not return a value.
+ */
 function addSheetDB() {
   let sheetsDB = [];
 
@@ -45,6 +56,11 @@ function addSheetDB() {
   allSheetsDB.push(sheetsDB);
 }
 
+/**
+ * Creates a graph component matrix.
+ *
+ * @return {void}
+ */
 function createGraphComponentMatrix() {
   let graphComponentMatrix = [];
 
@@ -59,11 +75,23 @@ function createGraphComponentMatrix() {
   allSheetsGraphComponentMatrix.push(graphComponentMatrix);
 }
 
+/**
+ * Handles the sheet DB for a given sheet index.
+ *
+ * @param {number} sheetIdx - The index of the sheet.
+ */
 function handleSheetDB(sheetIdx) {
   sheetsDB = allSheetsDB[sheetIdx];
   graphComponentMatrix = allSheetsGraphComponentMatrix[sheetIdx];
 }
 
+/**
+ * Handles the properties of the sheet.
+ *
+ * @param {number} rows - The number of rows in the sheet.
+ * @param {number} cols - The number of columns in the sheet.
+ * @return {undefined} This function does not return a value.
+ */
 function handleSheetProperties() {
   for (let row = 0; row < rows; row++) {
     for (let col = 0; col < cols; col++) {
@@ -77,6 +105,13 @@ function handleSheetProperties() {
   let firstCell = document.querySelector(".cell");
   firstCell.click();
 }
+
+/**
+ * Handles the UI for a given sheet.
+ *
+ * @param {object} sheet - The sheet object to handle the UI for.
+ * @return {undefined} This function does not return a value.
+ */
 function handleSheetUI(sheet) {
   let allSheets = document.querySelectorAll(".sheet-folder");
   for (let idx = 0; idx < allSheets.length; idx++) {
@@ -85,6 +120,12 @@ function handleSheetUI(sheet) {
   sheet.style.backgroundColor = activeSheetTabColor;
 }
 
+/**
+ * Handles the event when a sheet is activated.
+ *
+ * @param {Object} sheet - The sheet object that was clicked.
+ * @return {undefined} This function does not return a value.
+ */
 function handleSheetActive(sheet) {
   sheet.addEventListener("click", e => {
     let sheetIdx = Number(sheet.getAttribute("id"));
@@ -94,6 +135,12 @@ function handleSheetActive(sheet) {
   });
 }
 
+/**
+ * Handles the removal of a sheet.
+ *
+ * @param {Object} sheet - The sheet to be removed.
+ * @return {undefined} This function does not return a value.
+ */
 function handleSheetRemoval(sheet) {
   sheet.addEventListener("mousedown", e => {
     // detect right click
@@ -123,6 +170,12 @@ function handleSheetRemoval(sheet) {
   });
 }
 
+/**
+ * Handles the removal of a sheet from the UI.
+ *
+ * @param {Object} sheet - The sheet element to remove.
+ * @return {undefined} - This function does not return a value.
+ */
 function handleSheetUIRemoval(sheet) {
   sheet.remove();
   let allSheets = document.querySelectorAll(".sheet-folder");
