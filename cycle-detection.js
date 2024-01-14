@@ -47,13 +47,12 @@ function isGraphCyclic(graphComponentMatrix) {
             dfsVisited
           ) === true
         ) {
-          return true;
+          return [row, col];
         }
       }
     }
-
-    return false;
   }
+  return null;
 }
 
 /**
