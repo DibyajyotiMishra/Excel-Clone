@@ -42,6 +42,20 @@ formulaBar.addEventListener("keydown", e => {
       removeChildReferenceFromParent(cellProp.formula);
     }
 
+    // Add to Graph Component Matrix for cycle detection
+    addChildToGraphComponentMatrix(inputFormula, address);
+
+    // Check for cycle in graph before formula evaluation
+    let isCyclic = isGraphCyclic(graphComponentMatrix);
+
+    if (isCyclic === true) {
+      alert(
+        "Can not evaluate formula as there is a cycle in the dependency chain."
+      );
+      removeChildFromGraphComponentMatrix(inputFormula);
+      return;
+    }
+
     // evaluate formula
     let evaluatedValue = evaluateFormula(inputFormula);
 
@@ -49,7 +63,6 @@ formulaBar.addEventListener("keydown", e => {
     updateCell(evaluatedValue, inputFormula, address);
     addChildReferenceToParent(inputFormula);
     updateChildCellValue(address);
-    console.log(sheetsDB);
   }
 });
 
@@ -177,4 +190,35 @@ function updateCell(evaluatedValue, formula, cellAddress) {
   // Data change
   cellProp.value = evaluatedValue;
   cellProp.formula = formula;
+}
+
+function addChildToGraphComponentMatrix(formula, childAddress) {
+  let [childRowId, childColId] = decodeRowIdAndColIdFromAddress(childAddress);
+  let encodedFormula = formula.split(" ");
+  for (let idx = 0; idx < encodedFormula.length; idx++) {
+    let asciiValue = encodedFormula[idx].charCodeAt(0);
+    if (asciiValue >= 65 && asciiValue <= 90) {
+      let [parentRowId, parentColId] = decodeRowIdAndColIdFromAddress(
+        encodedFormula[idx]
+      );
+      graphComponentMatrix[parentRowId][parentColId].push([
+        childRowId,
+        childColId,
+      ]);
+    }
+  }
+}
+
+function removeChildFromGraphComponentMatrix(formula) {
+  let encodedFormula = formula.split(" ");
+  for (let idx = 0; idx < encodedFormula.length; idx++) {
+    let asciiValue = encodedFormula[idx].charCodeAt(0);
+    if (asciiValue >= 65 && asciiValue <= 90) {
+      let [parentRowId, parentColId] = decodeRowIdAndColIdFromAddress(
+        encodedFormula[idx]
+      );
+      // remove recently added child cell
+      graphComponentMatrix[parentRowId][parentColId].pop();
+    }
+  }
 }
