@@ -29,7 +29,7 @@ for (let rowIdx = 0; rowIdx < rows; rowIdx++) {
 let formulaBar = document.querySelector(".formula-bar");
 
 // Evaluate formula on enter
-formulaBar.addEventListener("keydown", e => {
+formulaBar.addEventListener("keydown", async e => {
   // get formula
   let inputFormula = formulaBar.value;
   // perform evaluation if inputFormula is not empty
@@ -46,12 +46,19 @@ formulaBar.addEventListener("keydown", e => {
     addChildToGraphComponentMatrix(inputFormula, address);
 
     // Check for cycle in graph before formula evaluation
-    let isCyclic = isGraphCyclic(graphComponentMatrix);
+    let cycleDetectionResponse = isGraphCyclic(graphComponentMatrix);
 
-    if (isCyclic === true) {
-      alert(
-        "Can not evaluate formula as there is a cycle in the dependency chain."
+    if (cycleDetectionResponse) {
+      let userResponse = confirm(
+        "error: Can not evaluate formula as there is a cycle in the dependency chain. Do you want to trace it?"
       );
+
+      while (userResponse === true) {
+        // Trace the cycle until user clicks cancel
+        await traceCyclicPath(graphComponentMatrix, cycleDetectionResponse);
+        userResponse = confirm("Do you want to trace the cycle again?");
+      }
+
       removeChildFromGraphComponentMatrix(inputFormula);
       return;
     }
