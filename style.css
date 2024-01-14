@@ -106,7 +106,7 @@ body {
 }
 
 .sheet-add-icon:hover {
-  cursor: default;
+  cursor: pointer;
 }
 
 .sheets-folder-container {
@@ -132,6 +132,7 @@ body {
 
 .sheet-content {
   width: 5rem;
+  cursor: pointer;
 }
 
 .grid-container {

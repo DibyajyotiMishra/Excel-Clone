@@ -2,16 +2,8 @@
  * Storage of the 2D matrix for cycle detection.
  */
 
+let allSheetsGraphComponentMatrix = [];
 let graphComponentMatrix = [];
-
-for (let row = 0; row < rows; row++) {
-  let currentRow = [];
-  for (let col = 0; col < cols; col++) {
-    // Why array ? because a parent can have multiple children
-    currentRow.push([]);
-  }
-  graphComponentMatrix.push(currentRow);
-}
 
 /**
  * Checks whether a graph represented by a matrix is cyclic.
