@@ -13,6 +13,7 @@ addSheetButton.addEventListener("click", e => {
   sheet.setAttribute("id", sheetId);
 
   sheet.innerHTML = `<div class="sheet-content">Sheet ${sheetId + 1}</div>`;
+  sheet.scrollIntoView({ behavior: "smooth", block: "center" });
   sheetsFolderContainer.appendChild(sheet);
   addSheetDB();
   createGraphComponentMatrix();
