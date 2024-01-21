@@ -2,6 +2,11 @@ let activeSheetTabColor = "#CED6E0";
 let sheetsFolderContainer = document.querySelector(".sheets-folder-container");
 let addSheetButton = document.querySelector(".sheet-add-icon");
 
+// Prevent context menu from showing up on right click
+sheetsFolderContainer.addEventListener("contextmenu", e => {
+  e.preventDefault();
+});
+
 /**
  * Adds a new sheet to the UI.
  **/
