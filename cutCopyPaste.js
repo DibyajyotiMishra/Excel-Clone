@@ -1,7 +1,10 @@
 let shiftKey;
 let copyBtn = document.querySelector(".copy");
+let copyContextMenu = document.querySelector(".context-menu-copy");
 let cutBtn = document.querySelector(".cut");
+let cutContextMenu = document.querySelector(".context-menu-cut");
 let pasteBtn = document.querySelector(".paste");
+let pasteContextMenu = document.querySelector(".context-menu-paste");
 let rangeStorage = [];
 let copyData = [];
 
@@ -60,6 +63,14 @@ function defaultSelectedCellsUI() {
 }
 
 copyBtn.addEventListener("click", e => {
+  handleCopyAction();
+});
+
+copyContextMenu.addEventListener("click", e => {
+  handleCopyAction();
+});
+
+function handleCopyAction() {
   if (rangeStorage.length < 2) return;
   copyData = [];
 
@@ -80,9 +91,17 @@ copyBtn.addEventListener("click", e => {
   }
 
   defaultSelectedCellsUI();
-});
+}
 
 cutBtn.addEventListener("click", e => {
+  handleCutAction();
+});
+
+cutContextMenu.addEventListener("click", e => {
+  handleCutAction();
+});
+
+function handleCutAction() {
   if (rangeStorage.length < 2) return;
 
   let [strow, stcol, endrow, endcol] = [
@@ -114,9 +133,17 @@ cutBtn.addEventListener("click", e => {
   }
 
   defaultSelectedCellsUI();
-});
+}
 
 pasteBtn.addEventListener("click", e => {
+  handlePasteAction();
+});
+
+pasteContextMenu.addEventListener("click", e => {
+  handlePasteAction();
+});
+
+function handlePasteAction() {
   // Past cells data work
   if (rangeStorage.length < 2) return;
 
@@ -153,4 +180,4 @@ pasteBtn.addEventListener("click", e => {
       cell.click();
     }
   }
-});
+}

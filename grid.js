@@ -5,6 +5,21 @@ let addressColContainer = document.querySelector(".address-col-container");
 let addressRowContainer = document.querySelector(".address-row-container");
 let cellsContainer = document.querySelector(".cells-container");
 let addressBar = document.querySelector(".address-bar");
+let contextMenu = document.querySelector(".context-menu");
+
+cellsContainer.addEventListener("contextmenu", e => {
+  e.preventDefault();
+  const { clientX, clientY } = e;
+  contextMenu.style.top = `${clientY}px`;
+  contextMenu.style.left = `${clientX}px`;
+  contextMenu.classList.add("visible");
+});
+
+cellsContainer.addEventListener("click", e => {
+  if (e.target.offsetParent != contextMenu) {
+    contextMenu.classList.remove("visible");
+  }
+});
 
 // Populates the address bar with row IDs
 for (let rowIdx = 0; rowIdx < rows; rowIdx++) {
