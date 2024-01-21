@@ -16,8 +16,11 @@ let sheetsDB = [];
 
 // Selectors for cell properties
 let bold = document.querySelector(".bold");
+let boldContextMenu = document.querySelector(".context-menu-bold");
 let italic = document.querySelector(".italic");
+let italicContextMenu = document.querySelector(".context-menu-italic");
 let underline = document.querySelector(".underline");
+let underlineContextMenu = document.querySelector(".context-menu-underline");
 let alignment = document.querySelectorAll(".alignment");
 let leftAlign = alignment[0],
   centerAlign = alignment[1],
@@ -35,6 +38,14 @@ let activeCellColorProp = "#d1d8e0",
 // Applying two-way data binding
 // Attach click listeners on each property
 bold.addEventListener("click", e => {
+  handleBoldClick();
+});
+
+boldContextMenu.addEventListener("click", e => {
+  handleBoldClick();
+});
+
+function handleBoldClick() {
   // access active cell
   let address = addressBar.value;
   let [cell, cellProp] = getActiveCell(address);
@@ -49,9 +60,17 @@ bold.addEventListener("click", e => {
     ? activeCellColorProp
     : inActiveCellColorProp;
   bold.style.borderRadius = cellProp.bold ? "0.3rem" : "0rem";
-});
+}
 
 italic.addEventListener("click", e => {
+  handleItalicClick();
+});
+
+italicContextMenu.addEventListener("click", e => {
+  handleItalicClick();
+});
+
+function handleItalicClick() {
   // access active cell
   let address = addressBar.value;
   let [cell, cellProp] = getActiveCell(address);
@@ -66,9 +85,17 @@ italic.addEventListener("click", e => {
     ? activeCellColorProp
     : inActiveCellColorProp;
   italic.style.borderRadius = cellProp.italic ? "0.3rem" : "0rem";
-});
+}
 
 underline.addEventListener("click", e => {
+  handleUnderlineClick();
+});
+
+underlineContextMenu.addEventListener("click", e => {
+  handleUnderlineClick();
+});
+
+function handleUnderlineClick() {
   // access active cell
   let address = addressBar.value;
   let [cell, cellProp] = getActiveCell(address);
@@ -83,7 +110,7 @@ underline.addEventListener("click", e => {
     ? activeCellColorProp
     : inActiveCellColorProp;
   underline.style.borderRadius = cellProp.underline ? "0.3rem" : "0rem";
-});
+}
 
 alignment.forEach(alignType => {
   alignType.addEventListener("click", e => {
