@@ -24,6 +24,11 @@ body {
   align-items: center;
 }
 
+.selected-page-action {
+  background-color: #ecf0f1;
+  color: #218c74;
+}
+
 .cellprop-actions-container {
   height: 3rem;
   background-color: #ecf0f1;
